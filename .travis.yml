@@ -9,3 +9,14 @@ before_install:
 script:
   - docker run -e CI=true epopevad/docker-react npm run test
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "mydocker"
+  env: "Mydocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-762117518135"
+  bucket_path: "mydocker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: "$AWS_SECRET_KEY"
